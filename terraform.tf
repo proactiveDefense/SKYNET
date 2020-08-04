@@ -5,7 +5,7 @@ provider "aws" {
 
 variable "public_key_path" { type = string }
 variable "private_key_path" { type = string }
-variable "ami" { default = "ami-06c8ff16263f3db59" }
+variable "ami" { default = "ami-06c8ff16263f3db59" } #UBUNTU 20.04 LTS
 
 resource "aws_key_pair" "skynet_key" {
   key_name   = "key"

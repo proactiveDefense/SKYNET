@@ -1,3 +1,4 @@
+/*
 resource "aws_key_pair" "chiave_magica" {
   key_name   = "chiave_magica"
   public_key = file(var.public_key_path)
@@ -35,3 +36,4 @@ resource "aws_instance" "ssh_honeypot" {
 output "ip" {
   value = aws_instance.ssh_honeypot.public_ip
 }
+*/

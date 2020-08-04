@@ -30,6 +30,15 @@ resource "aws_instance" "skynet_dash" {
     script = "./script/skynetProv.sh"
   }
 
+  provisioner "file" {
+    source = "./file/inadyn.conf"
+    destination = "/tmp/inadyn.conf"
+  }
+
+  provisioner "remote-exec" {
+    script = "./script/skynetStart.sh"
+  }
+
 }
 
 output "ip_dash" {

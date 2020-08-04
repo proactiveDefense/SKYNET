@@ -26,4 +26,12 @@ resource "aws_instance" "skynet_dash" {
     host     = aws_instance.skynet_dash.public_ip
   }
 
+  provisioner "remote-exec" {
+    script = "./script/skynetProv.sh"
+  }
+
+}
+
+output "ip_dash" {
+  value = aws_instance.skynet_dash.public_ip
 }

@@ -1,6 +1,5 @@
 #!/bin/bash
 set -efux
-export DEBIAN_FRONTEND=noninteractive
 
 curl -sS https://deb.troglobit.com/pubkey.gpg | sudo apt-key add -
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -

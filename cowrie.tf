@@ -1,5 +1,3 @@
-
-
 resource "aws_instance" "ssh_honeypot" {
   ami				= var.ami
   instance_type	= "t2.micro"
@@ -14,7 +12,7 @@ resource "aws_instance" "ssh_honeypot" {
   }
 
   provisioner "remote-exec" {
-    script = "./script/provision.sh"
+    script = "./script/provisionCowrie.sh"
   }
 
   provisioner "file" {
@@ -23,12 +21,12 @@ resource "aws_instance" "ssh_honeypot" {
   }
 
   provisioner "remote-exec" {
-    script = "./script/start.sh"
+    script = "./script/startCowrie.sh"
   }
 
 }
 
-output "ip" {
+output "ip-cowrie" {
   value = aws_instance.ssh_honeypot.public_ip
 }
 

@@ -1,5 +1,5 @@
 resource "aws_instance" "elk" {
-  ami				= var.ami
+  ami			= var.ami
   instance_type	= "t2.medium"
   key_name		= aws_key_pair.skynet_key.key_name
 
@@ -11,6 +11,9 @@ resource "aws_instance" "elk" {
     host     = aws_instance.elk.public_ip
   }
 
+  provisioner "remote-exec" {
+    script = "./script/provisionELK.sh"
+  }
 }
 
 output "ip-elk" {

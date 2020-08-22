@@ -8,6 +8,7 @@ set -efux
 sudo apt update
 sudo apt-get install -y apt-transport-https
 sudo apt install -y default-jre
+
 #elastic
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.0-amd64.deb
 sudo dpkg -i elasticsearch-7.9.0-amd64.deb
@@ -18,7 +19,11 @@ sudo dpkg -i kibana-7.9.0-amd64.deb
 wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.0.deb
 sudo dpkg -i logstash-7.9.0.deb
 
-
+sudo sed -i 's/#server.host: "localhost"/server.host: 0.0.0.0/' /etc/kibana/kibana.yml
+sudo service elasticsearch start
+sudo service kibana start
+sudo systemctl enable kibana
+sudo systemctl enable elasticsearch.service
 
 
 

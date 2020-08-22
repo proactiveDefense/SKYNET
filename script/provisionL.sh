@@ -11,5 +11,9 @@ sudo cp /tmp/GeoLite2-City.mmdb /opt/logstash/vendor/geoip/
 
 #logstash
 wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.0.deb
-sudo dpkg -i logstash-7.9.0.deb
+sudo dpkg -i logstash-7.9.0.deb && \
+sudo cp /tmp/log-cow.conf /etc/logstash/conf.d/
+sudo service logstash start
+
+
 

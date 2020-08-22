@@ -8,6 +8,7 @@ set -efux
 sudo apt update
 sudo apt-get install -y git python3-virtualenv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind virtualenv
 
+# shellcheck disable=SC2155
 export pass=$(echo mypasswd | openssl passwd -6 -stdin)
 sudo useradd -m -p $pass -s /bin/bash administrator
 

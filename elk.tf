@@ -12,8 +12,22 @@ resource "aws_instance" "elk" {
   }
 
   provisioner "remote-exec" {
-    script = "./script/provisionELK.sh"
+    script = "./script/provisionEK.sh"
   }
+
+  provisioner "file" {
+    source = "./file/GeoLite2-City.mmdb"
+    destination = "/tmp/GeoLite2-City.mmdb"
+  }
+  provisioner "file" {
+    source = "./file/log-cow.conf"
+    destination = "/tmp/log-cow.conf"
+  }
+
+  provisioner "remote-exec" {
+    script = "./script/provisionL.sh"
+  }
+
 }
 
 output "ip-elk" {

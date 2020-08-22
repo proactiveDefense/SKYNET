@@ -3,6 +3,8 @@ resource "aws_instance" "ssh_honeypot" {
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
 
+  depends_on = [aws_instance.elk]
+
   #creates ssh connection to consul servers
   connection {
     type = "ssh"
@@ -29,4 +31,3 @@ resource "aws_instance" "ssh_honeypot" {
 output "ip-cowrie" {
   value = aws_instance.ssh_honeypot.public_ip
 }
-

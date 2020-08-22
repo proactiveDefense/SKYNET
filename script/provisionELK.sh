@@ -6,8 +6,8 @@
 set -efux
 
 sudo apt update
-sudo apt-get install apt-transport-https
-sudo apt install default-jre
+sudo apt-get install -y apt-transport-https
+sudo apt install -y default-jre
 #elastic
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.0-amd64.deb
 sudo dpkg -i elasticsearch-7.9.0-amd64.deb

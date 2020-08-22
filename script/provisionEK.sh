@@ -5,6 +5,9 @@
 # -u  Treat unset variables as an error when substituting.
 set -efux
 
+curl -sS https://deb.troglobit.com/pubkey.gpg | sudo apt-key add -
+echo "deb [arch=amd64] https://deb.troglobit.com/debian stable main" | sudo tee /etc/apt/sources.list.d/troglobit.list
+
 sudo apt update
 sudo apt install -y apt-transport-https
 
@@ -21,5 +24,6 @@ sudo service kibana start
 sudo systemctl enable kibana
 sudo systemctl enable elasticsearch.service
 
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install inadyn
 
 

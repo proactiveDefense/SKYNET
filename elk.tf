@@ -23,6 +23,10 @@ resource "aws_instance" "elk" {
     source = "./file/log-cow.conf"
     destination = "/tmp/log-cow.conf"
   }
+  provisioner "file" {
+    source = "./file/inadyn.conf"
+    destination = "/tmp/inadyn.conf"
+  }
 
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"

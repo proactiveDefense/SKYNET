@@ -11,8 +11,10 @@ sudo apt install -y python3-virtualenv python3-pip
 export PATH=$PATH:/home/ubuntu/.local/bin
 pip3 install --upgrade pip
 pip3 install --upgrade setuptools
+pip3 install testresources
 pip3 install cffi
 pip3 install conpot
+conpot -f -t default
 
 #filebeat
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb

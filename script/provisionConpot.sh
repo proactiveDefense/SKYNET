@@ -10,12 +10,15 @@ sudo apt-get install -y git libsmi2ldbl smistrip libxslt1-dev python3 libevent-d
 sudo apt install -y python3-virtualenv python3-pip
 export PATH=$PATH:/home/ubuntu/.local/bin
 pip3 install --upgrade pip
-pip3 install --upgrade setuptools
 pip3 install testresources
+pip3 install --upgrade setuptools
 pip3 install cffi
 pip3 install conpot
-conpot -f -t default
 
-#filebeat
+awk 'NR==1,/enabled = True/{sub(/enabled = True/, "enabled = False")} 1' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg &>/dev/null
+sudo sed -i 's/filename = \/var\/log\/conpot.json/filename = \/home\/ubuntu\/conpot.json/' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg
+conpot -f -t default &>/dev/null &
+
+#filebeatdefault
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb
 sudo dpkg -i filebeat-7.9.0-amd64.deb

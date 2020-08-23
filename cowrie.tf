@@ -21,6 +21,10 @@ resource "aws_instance" "ssh_honeypot" {
     source = "./file/cowrie.cfg"
     destination = "cowrie/etc/cowrie.cfg"
   }
+  provisioner "file" {
+    source = "./file/filebeat-cowrie.yml"
+    destination = "/tmp/filebeat.yml"
+  }
 
   provisioner "remote-exec" {
     script = "./script/startCowrie.sh"

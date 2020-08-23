@@ -12,5 +12,8 @@ sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/s
 sudo systemctl restart sshd
 sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
 
-sudo apt-get install -y auditd audispd-plugins
-sudo auditctl -w / -p war
+sudo cp /tmp/filebeat.yml /etc/filebeat/filebeat.yml
+sudo systemctl start filebeat
+
+#sudo apt-get install -y auditd audispd-plugins
+#sudo auditctl -w / -p war

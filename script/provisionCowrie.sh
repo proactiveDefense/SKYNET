@@ -20,3 +20,6 @@ pip install --upgrade pip
 pip install --upgrade -r requirements.txt
 pip install pymongo
 
+#filebeat
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb
+sudo dpkg -i filebeat-7.9.0-amd64.deb

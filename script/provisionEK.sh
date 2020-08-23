@@ -24,6 +24,6 @@ sudo service kibana start
 sudo systemctl enable kibana
 sudo systemctl enable elasticsearch.service
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get -y install inadyn
+sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install inadyn
 
 

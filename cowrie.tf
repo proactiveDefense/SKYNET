@@ -4,7 +4,7 @@ resource "aws_instance" "ssh_honeypot" {
   key_name		= aws_key_pair.skynet_key.key_name
 
   tags = {
-    Name = "  COWRIE"
+    Name = "COWRIE"
   }
 
 

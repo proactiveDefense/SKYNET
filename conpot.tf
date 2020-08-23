@@ -4,7 +4,7 @@ resource "aws_instance" "conpot" {
   key_name		= aws_key_pair.skynet_key.key_name
 
   tags = {
-    Name = "  CONPOT"
+    Name = "CONPOT"
   }
 
   depends_on = [aws_instance.elk]
@@ -15,6 +15,10 @@ resource "aws_instance" "conpot" {
     user = "ubuntu"
     private_key = file(var.private_key_path)
     host     = aws_instance.conpot.public_ip
+  }
+
+  provisioner "remote-exec" {
+    script = "./script/provisionConpot.sh"
   }
 
 }

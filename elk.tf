@@ -4,7 +4,7 @@ resource "aws_instance" "elk" {
   key_name		= aws_key_pair.skynet_key.key_name
 
   tags = {
-    Name = "  ELK"
+    Name = "ELK"
   }
 
 

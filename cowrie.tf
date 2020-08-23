@@ -1,14 +1,14 @@
-resource "aws_key_pair" "chiave_magica" {
-  key_name   = "chiave_magica"
-  public_key = file(var.public_key_path)
-}
-
 resource "aws_instance" "ssh_honeypot" {
   ami				= var.ami
   instance_type	= "t2.micro"
-  key_name		= aws_key_pair.chiave_magica.key_name
+  key_name		= aws_key_pair.skynet_key.key_name
 
-  depends_on = [aws_instance.skynet_dash]
+  tags = {
+    Name = "  COWRIE"
+  }
+
+
+  depends_on = [aws_instance.elk]
 
   #creates ssh connection to consul servers
   connection {
@@ -19,21 +19,24 @@ resource "aws_instance" "ssh_honeypot" {
   }
 
   provisioner "remote-exec" {
-    script = "./script/provision.sh"
+    script = "./script/provisionCowrie.sh"
   }
 
   provisioner "file" {
     source = "./file/cowrie.cfg"
     destination = "cowrie/etc/cowrie.cfg"
   }
+  provisioner "file" {
+    source = "./file/filebeat-cowrie.yml"
+    destination = "/tmp/filebeat.yml"
+  }
 
   provisioner "remote-exec" {
-    script = "./script/start.sh"
+    script = "./script/startCowrie.sh"
   }
 
 }
 
-output "ip" {
+output "ip-cowrie" {
   value = aws_instance.ssh_honeypot.public_ip
 }
-

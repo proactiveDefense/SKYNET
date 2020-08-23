@@ -12,35 +12,3 @@ resource "aws_key_pair" "skynet_key" {
   public_key = file(var.public_key_path)
 }
 
-resource "aws_instance" "skynet_dash" {
-  ami		    = var.ami
-  instance_type	= "t2.micro"
-  key_name		= aws_key_pair.skynet_key.key_name
-
-
-  #creates ssh connection to consul servers
-  connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file(var.private_key_path)
-    host     = aws_instance.skynet_dash.public_ip
-  }
-
-  provisioner "remote-exec" {
-    script = "./script/skynetProv.sh"
-  }
-
-  provisioner "file" {
-    source = "./file/inadyn.conf"
-    destination = "/tmp/inadyn.conf"
-  }
-
-  provisioner "remote-exec" {
-    script = "./script/skynetStart.sh"
-  }
-
-}
-
-output "ip_dash" {
-  value = aws_instance.skynet_dash.public_ip
-}

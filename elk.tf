@@ -3,6 +3,11 @@ resource "aws_instance" "elk" {
   instance_type	= "t2.medium"
   key_name		= aws_key_pair.skynet_key.key_name
 
+  tags = {
+    Name = "  ELK"
+  }
+
+
   #creates ssh connection to consul servers
   connection {
     type = "ssh"

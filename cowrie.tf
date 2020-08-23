@@ -3,6 +3,11 @@ resource "aws_instance" "ssh_honeypot" {
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
 
+  tags = {
+    Name = "  COWRIE"
+  }
+
+
   depends_on = [aws_instance.elk]
 
   #creates ssh connection to consul servers

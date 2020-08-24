@@ -6,7 +6,7 @@
 set -efux
 
 sudo apt update
-sudo apt-get install -y git libsmi2ldbl smistrip libxslt1-dev python3 libevent-dev default-libmysqlclient-dev
+sudo apt-get install -y git libsmi2ldbl smistrip libxslt1-dev python3.6 libevent-dev default-libmysqlclient-dev
 sudo apt install -y python3-virtualenv python3-pip
 export PATH=$PATH:/home/ubuntu/.local/bin
 pip3 install --upgrade pip

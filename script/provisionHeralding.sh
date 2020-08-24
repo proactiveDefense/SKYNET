@@ -7,7 +7,7 @@ set -efux
 
 sudo apt update
 export PATH=$PATH:/home/ubuntu/.local/bin
-sudo apt-get install python3-pip python3 build-essential libssl-dev libffi-dev libpq-dev
-pip3 install heralding
+sudo apt-get install -y python3-pip python3.6 build-essential libssl-dev libffi-dev libpq-dev
+sudo pip3 install heralding
 
 

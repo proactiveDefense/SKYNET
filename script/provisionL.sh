@@ -15,6 +15,6 @@ sudo dpkg -i logstash-7.9.0.deb && \
 sudo cp /tmp/log-cow.conf /etc/logstash/conf.d/
 sudo service logstash start
 
-#sudo mv /tmp/inadyn.conf /etc/inadyn.conf
-#sudo service inadyn restart
+sudo mv /tmp/inadyn.conf /etc/inadyn.conf
+sudo service inadyn restart
 

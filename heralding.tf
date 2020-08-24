@@ -7,7 +7,7 @@ resource "aws_instance" "heralding" {
     Name = "HERALDING"
   }
 
-  #depends_on = [aws_instance.elk]
+  depends_on = [aws_instance.elk]
 
   #creates ssh connection to consul servers
   connection {
@@ -15,6 +15,10 @@ resource "aws_instance" "heralding" {
     user = "ubuntu"
     private_key = file(var.private_key_path)
     host     = aws_instance.heralding.public_ip
+  }
+
+  provisioner "remote-exec" {
+    script = "./script/provisionHeralding.sh"
   }
 
 }

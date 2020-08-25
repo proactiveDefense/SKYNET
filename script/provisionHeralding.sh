@@ -7,7 +7,12 @@ set -efux
 
 sudo apt update
 export PATH=$PATH:/home/ubuntu/.local/bin
-sudo apt-get install -y python3-pip python3.6 build-essential libssl-dev libffi-dev libpq-dev
-sudo pip3 install heralding
+
+sudo add-apt-repository -y ppa:deadsnakes/ppa && sudo apt-get -y update
+sudo apt-get install -y python3.6 python3.6-dev python3-pip python3-virtualenv
+sudo apt-get install -y build-essential libssl-dev libffi-dev libpq-dev
+virtualenv --python=python3.6 heralding
+source heralding/bin/activate
+pip3 install heralding
 
 

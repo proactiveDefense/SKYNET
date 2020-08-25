@@ -15,4 +15,7 @@ virtualenv --python=python3.6 heralding
 source heralding/bin/activate
 pip3 install heralding
 
+#filebeat
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb
+sudo dpkg -i filebeat-7.9.0-amd64.deb
 

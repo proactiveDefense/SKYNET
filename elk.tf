@@ -7,6 +7,7 @@ resource "aws_instance" "elk" {
     Name = "ELK"
   }
 
+  depends_on = [aws_key_pair.skynet_key]
 
   #creates ssh connection to consul servers
   connection {
@@ -15,7 +16,7 @@ resource "aws_instance" "elk" {
     private_key = file(var.private_key_path)
     host     = aws_instance.elk.public_ip
   }
-
+  /*
   provisioner "remote-exec" {
     script = "./script/provisionEK.sh"
   }
@@ -36,7 +37,7 @@ resource "aws_instance" "elk" {
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"
   }
-
+  */
 }
 
 output "ip-elk" {

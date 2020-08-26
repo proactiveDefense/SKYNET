@@ -17,6 +17,10 @@ sudo dpkg -i elasticsearch-7.9.0-amd64.deb
 #kibana
 wget https://artifacts.elastic.co/downloads/kibana/kibana-7.9.0-amd64.deb
 sudo dpkg -i kibana-7.9.0-amd64.deb
+#metricbeat
+#metricbeat
+curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.9.0-amd64.deb
+sudo dpkg -i metricbeat-7.9.0-amd64.deb
 
 sudo sed -i 's/#server.host: "localhost"/server.host: 0.0.0.0/' /etc/kibana/kibana.yml
 sudo service elasticsearch start

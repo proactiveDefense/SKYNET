@@ -15,5 +15,8 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
 sudo cp /tmp/filebeat.yml /etc/filebeat/filebeat.yml
 sudo systemctl start filebeat
 
+sudo cp /tmp/metricbeat.yml /etc/metricbeat/metricbeat.yml
+sudo service metricbeat start
+
 #sudo apt-get install -y auditd audispd-plugins
 #sudo auditctl -w / -p war

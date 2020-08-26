@@ -15,6 +15,12 @@ sudo dpkg -i logstash-7.9.0.deb && \
 sudo cp /tmp/log-cow.conf /etc/logstash/conf.d/
 sudo service logstash start
 
+sudo sed -i '$a output.elasticsearch.index: "%{[@metadata][beat]}-%{[@metadata][version]}\"' /etc/metricbeat/metricbeat.yml
+sudo sed -i '$a setup.template.name: "%{[@metadata][beat]}\"' /etc/metricbeat/metricbeat.yml
+sudo sed -i '$a setup.template.pattern: "%{[@metadata][beat]}-*\"' /etc/metricbeat/metricbeat.yml
+sudo metricbeat setup
+
+
 sudo mv /tmp/inadyn.conf /etc/inadyn.conf
 sudo service inadyn restart
 

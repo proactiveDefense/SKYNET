@@ -19,7 +19,7 @@ resource "aws_instance" "ssh_honeypot" {
     private_key = file(var.private_key_path)
     host     = aws_instance.ssh_honeypot.public_ip
   }
-  /*
+
   provisioner "remote-exec" {
     script = "./script/provisionCowrie.sh"
   }
@@ -40,7 +40,7 @@ resource "aws_instance" "ssh_honeypot" {
   provisioner "remote-exec" {
     script = "./script/startCowrie.sh"
   }
-  */
+
 }
 
 output "ip-cowrie" {

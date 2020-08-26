@@ -27,12 +27,6 @@ resource "aws_internet_gateway" "skynet_igw" {
   }
 }
 
-resource "aws_route" "internet_access" {
-  route_table_id         = aws_vpc.skynet_vpc.main_route_table_id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.skynet_igw.id
-}
-
 resource "aws_subnet" "vpc_dmz" {
   vpc_id                  = aws_vpc.skynet_vpc.id
   cidr_block              = "10.0.1.0/24"
@@ -45,10 +39,34 @@ resource "aws_subnet" "vpc_dmz" {
 resource "aws_subnet" "vpc_private" {
   vpc_id                  = aws_vpc.skynet_vpc.id
   cidr_block              = "10.0.101.0/24"
-  map_public_ip_on_launch = true
   tags = {
     Name = "PRIVATE"
   }
+}
+
+resource "aws_route_table" "igw_route" {
+  vpc_id                 = aws_vpc.skynet_vpc.id
+
+  tags = {
+    Name = "IGW route"
+  }
+}
+
+resource "aws_route" "internet_access" {
+  route_table_id         = aws_route_table.igw_route.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.skynet_igw.id
+}
+
+resource "aws_route_table_association" "internet_access" {
+  subnet_id      = aws_subnet.vpc_dmz.id
+  route_table_id = aws_route_table.igw_route.id
+}
+
+resource "aws_route" "nat_rule" {
+  route_table_id         = aws_vpc.skynet_vpc.main_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  instance_id             = aws_instance.nat.id
 }
 
 resource "aws_security_group" "cowrie" {

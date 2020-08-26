@@ -2,6 +2,8 @@ resource "aws_instance" "elk" {
   ami			= var.ami
   instance_type	= "t2.medium"
   key_name		= aws_key_pair.skynet_key.key_name
+  subnet_id     = aws_subnet.vpc_dmz.id
+  vpc_security_group_ids = [aws_security_group.cowrie.id]
 
   tags = {
     Name = "ELK"
@@ -16,7 +18,8 @@ resource "aws_instance" "elk" {
     private_key = file(var.private_key_path)
     host     = aws_instance.elk.public_ip
   }
-  /*
+
+
   provisioner "remote-exec" {
     script = "./script/provisionEK.sh"
   }
@@ -37,7 +40,7 @@ resource "aws_instance" "elk" {
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"
   }
-  */
+
 }
 
 output "ip-elk" {

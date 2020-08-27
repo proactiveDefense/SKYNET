@@ -22,6 +22,18 @@ resource "aws_instance" "heralding" {
   provisioner "remote-exec" {
     script = "./script/provisionHeralding.sh"
   }
+  provisioner "file" {
+    source = "./file/metric-cowrie.yml"
+    destination = "/tmp/metricbeat.yml"
+  }
+  provisioner "file" {
+    source = "./file/heralding.yml"
+    destination = "/home/ubuntu/heralding/lib/python3.6/site-packages/heralding/heralding.yml"
+  }
+  provisioner "remote-exec" {
+    script = "./script/startHeralding.sh"
+  }
+
 
 }
 

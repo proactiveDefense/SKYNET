@@ -1,9 +1,30 @@
+/*data "template_file" "myuserdata" {
+  template = "${file("${path.cwd}/script/provisionConpot.sh")}"
+}*/
+data "template_file" "client" {
+  template = file("./script/provisionConpot.sh")
+}
+
+data "template_cloudinit_config" "config" {
+  gzip          = false
+  base64_encode = false
+  part {
+    content_type = "text/x-shellscript"
+    content      = data.template_file.client.rendered
+  }
+}
+
 resource "aws_instance" "conpot" {
   ami			= var.ami
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
   subnet_id     = aws_subnet.vpc_private.id
   vpc_security_group_ids = [aws_security_group.cowrie.id]
+  user_data     = data.template_cloudinit_config.config.rendered
+  #user_data = "${file("./script/provisionConpot.sh")}"
+  #user_data = data.template_file.myuserdata.template
+  #user_data = file("/home/evil/IdeaProjects/SKYNET/script/provisionConpot.sh")
+  #user_data = "${data.template_file.myuserdata.template}"
 
   tags = {
     Name = "CONPOT"
@@ -18,13 +39,13 @@ resource "aws_instance" "conpot" {
     private_key = file(var.private_key_path)
     host     = aws_instance.conpot.public_ip
   }
-  /*
+
   provisioner "remote-exec" {
     script = "./script/provisionConpot.sh"
   }
-  */
+
 }
 
 output "ip-conpot" {
-  value = aws_instance.conpot.public_ip
+  value = aws_instance.conpot.private_ip
 }

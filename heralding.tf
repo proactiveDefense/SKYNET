@@ -9,7 +9,7 @@ resource "aws_instance" "heralding" {
     Name = "HERALDING"
   }
 
-  depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
+  #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
 
   #creates ssh connection to consul servers
   connection {
@@ -18,7 +18,10 @@ resource "aws_instance" "heralding" {
     private_key = file(var.private_key_path)
     host     = aws_instance.heralding.public_ip
   }
-
+  provisioner "file" {
+    source = "./file/heralding.yml"
+    destination = "/tmp/heralding.yml"
+  }
   provisioner "remote-exec" {
     script = "./script/provisionHeralding.sh"
   }
@@ -26,10 +29,7 @@ resource "aws_instance" "heralding" {
     source = "./file/metric-cowrie.yml"
     destination = "/tmp/metricbeat.yml"
   }
-  provisioner "file" {
-    source = "./file/heralding.yml"
-    destination = "/home/ubuntu/heralding/lib/python3.6/site-packages/heralding/heralding.yml"
-  }
+
   provisioner "remote-exec" {
     script = "./script/startHeralding.sh"
   }

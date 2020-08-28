@@ -14,6 +14,8 @@ sudo apt-get install -y build-essential libssl-dev libffi-dev libpq-dev
 virtualenv --python=python3.6 heralding
 source heralding/bin/activate
 pip3 install heralding
+cp /tmp/heralding.yml /home/ubuntu/heralding/lib/python3.6/site-packages/heralding/heralding.yml
+nohup heralding &
 
 #filebeat
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb

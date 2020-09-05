@@ -17,7 +17,7 @@ resource "aws_instance" "nat" {
     type = "ssh"
     user = "ubuntu"
     private_key = file(var.private_key_path)
-    host     = aws_instance.heralding.public_ip
+    host     = aws_instance.nat.public_ip
   }
 
 }

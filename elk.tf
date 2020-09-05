@@ -1,4 +1,4 @@
-resource "aws_instance" "elk" {
+/*resource "aws_instance" "elk" {
   ami			= var.ami
   instance_type	= "t2.medium"
   key_name		= aws_key_pair.skynet_key.key_name
@@ -45,5 +45,4 @@ resource "aws_instance" "elk" {
 
 output "ip-elk" {
   value = aws_instance.elk.public_ip
-}
-
+}*/

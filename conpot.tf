@@ -1,4 +1,4 @@
-data "template_file" "client" {
+/*data "template_file" "client" {
   template = file("./script/provisionConpot.sh")
 }
 
@@ -23,7 +23,7 @@ resource "aws_instance" "conpot" {
     Name = "CONPOT"
   }
 
-  depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
+  #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
 
   #creates ssh connection to consul servers
   connection {
@@ -37,3 +37,4 @@ resource "aws_instance" "conpot" {
 output "ip-conpot" {
   value = aws_instance.conpot.private_ip
 }
+*/

@@ -1,4 +1,4 @@
-resource "aws_instance" "ssh_honeypot" {
+/*resource "aws_instance" "ssh_honeypot" {
   ami			= var.ami
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
@@ -45,4 +45,4 @@ resource "aws_instance" "ssh_honeypot" {
 
 output "ip-cowrie" {
   value = aws_instance.ssh_honeypot.public_ip
-}
+}*/

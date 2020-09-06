@@ -25,10 +25,13 @@ resource "aws_instance" "bastion" {
     source = "./file/GeoLite2-City.mmdb"
     destination = "/tmp/GeoLite2-City.mmdb"
   }
-
   provisioner "file" {
     source = "./file/log-cow.conf"
     destination = "/tmp/log-cow.conf"
+  }
+
+  provisioner "remote-exec" {
+    script = "./script/provisionL.sh"
   }
 
   #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]

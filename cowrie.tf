@@ -1,8 +1,8 @@
-/*resource "aws_instance" "ssh_honeypot" {
+resource "aws_instance" "ssh_honeypot" {
   ami			= var.ami
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
-  subnet_id     = aws_subnet.vpc_dmz.id
+  subnet_id     = aws_subnet.dmz.id
   vpc_security_group_ids = [aws_security_group.cowrie.id]
 
   tags = {
@@ -10,7 +10,7 @@
   }
 
 
-  depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
+  #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
 
   #creates ssh connection to consul servers
   connection {
@@ -45,4 +45,4 @@
 
 output "ip-cowrie" {
   value = aws_instance.ssh_honeypot.public_ip
-}*/
+}

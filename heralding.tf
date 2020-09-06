@@ -18,7 +18,7 @@ resource "aws_instance" "heralding" {
     private_key = file(var.private_key_path)
     host     = aws_instance.heralding.public_ip
   }
-  /*
+
   provisioner "file" {
     source = "./file/heralding.yml"
     destination = "/tmp/heralding.yml"
@@ -39,7 +39,6 @@ resource "aws_instance" "heralding" {
   provisioner "remote-exec" {
     script = "./script/startHeralding.sh"
   }
-  */
 
 }
 

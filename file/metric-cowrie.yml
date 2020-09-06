@@ -104,7 +104,7 @@ setup.template.settings:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["projectwork4.cyberhackademy.it:5100"]
+  hosts: ["10.0.102.6:5100"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications

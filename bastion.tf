@@ -9,21 +9,26 @@ resource "aws_instance" "bastion" {
     Name = "BASTION"
   }
 
-  /*
+
   connection {
     bastion_host = aws_instance.bastion.public_ip
-    host         = aws_instance.conpot2.private_ip
+    host         = aws_instance.elk.private_ip
     user         = "ubuntu"
     private_key  = file(var.private_key_path)
   }
 
   provisioner "remote-exec" {
-    script = "./script/provisionConpot.sh"
+    script = "./script/provisionEK.sh"
   }
 
   provisioner "file" {
-    source = "./file/metric-cowrie.yml"
-    destination = "/tmp/metricbeat.yml"
+    source = "./file/GeoLite2-City.mmdb"
+    destination = "/tmp/GeoLite2-City.mmdb"
+  }
+
+  provisioner "file" {
+    source = "./file/log-cow.conf"
+    destination = "/tmp/log-cow.conf"
   }
 
   #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]

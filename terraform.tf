@@ -36,6 +36,15 @@ resource "aws_subnet" "vpc_dmz" {
   }
 }
 
+resource "aws_subnet" "management" {
+  vpc_id                  = aws_vpc.skynet_vpc.id
+  cidr_block              = "10.0.2.0/24"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "MANAGEMENT"
+  }
+}
+
 resource "aws_subnet" "vpc_private" {
   vpc_id                  = aws_vpc.skynet_vpc.id
   cidr_block              = "10.0.101.0/24"

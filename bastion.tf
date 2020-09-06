@@ -9,6 +9,7 @@ resource "aws_instance" "bastion" {
     Name = "BASTION"
   }
 
+  /*
   connection {
     bastion_host = aws_instance.bastion.public_ip
     host         = aws_instance.conpot2.private_ip

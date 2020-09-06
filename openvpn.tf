@@ -16,8 +16,12 @@ resource "aws_instance" "vpn" {
     host     = aws_instance.vpn.public_ip
   }
 
+  provisioner "remote-exec" {
+    script = "./script/provisionVPN.sh"
+  }
+
 }
 
 output "ip-vpn" {
-  value = aws_instance.vpn.private_ip
+  value = aws_instance.vpn.public_ip
 }

@@ -10,7 +10,7 @@ virtualenv --python=python3 cowrie-env
 sudo sed -i 's/#Port 22/Port 40000/' /etc/ssh/sshd_config
 sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 sudo systemctl restart sshd
-sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 222234.205.134.230
 
 sudo cp /tmp/filebeat.yml /etc/filebeat/filebeat.yml
 sudo systemctl start filebeat

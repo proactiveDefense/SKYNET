@@ -9,7 +9,14 @@ resource "aws_instance" "bastion" {
     Name = "BASTION"
   }
 
+}
 
+output "ip-bastion" {
+  value = aws_instance.bastion.public_ip
+}
+
+
+resource "null_resource" "connection_elk" {
   connection {
     bastion_host = aws_instance.bastion.public_ip
     host         = aws_instance.elk.private_ip
@@ -33,40 +40,18 @@ resource "aws_instance" "bastion" {
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"
   }
-
-  #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
-  /*
-  #creates ssh connection to consul servers
-  connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file(var.private_key_path)
-    host     = aws_instance.bastion.public_ip
-  }
-
-  provisioner "remote-exec" {
-    script = "./script/provisionCowrie.sh"
-  }
-
-  provisioner "file" {
-    source = "./file/cowrie.cfg"
-    destination = "cowrie/etc/cowrie.cfg"
-  }
-  provisioner "file" {
-    source = "./file/filebeat-cowrie.yml"
-    destination = "/tmp/filebeat.yml"
-  }
-  provisioner "file" {
-    source = "./file/metric-cowrie.yml"
-    destination = "/tmp/metricbeat.yml"
-  }
-
-  provisioner "remote-exec" {
-    script = "./script/startCowrie.sh"
-  }
-  */
 }
 
-output "ip-bastion" {
-  value = aws_instance.bastion.public_ip
+resource "null_resource" "connect_conpot2" {
+  connection {
+    bastion_host = aws_instance.bastion.public_ip
+    host         = aws_instance.conpot2.private_ip
+    user         = "ubuntu"
+    private_key  = file(var.private_key_path)
+  }
+
+  provisioner "remote-exec" {
+    script = "./script/provisionConpot.sh"
+  }
+
 }

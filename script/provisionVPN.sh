@@ -5,7 +5,7 @@
 # -u  Treat unset variables as an error when substituting.
 set -efux
 
-sudo apt update
+sudo apt update && \
 
 curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
 chmod +x openvpn-install.sh

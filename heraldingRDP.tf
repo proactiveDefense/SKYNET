@@ -1,4 +1,4 @@
-resource "aws_instance" "heralding" {
+resource "aws_instance" "heraldingRDP" {
   ami				= var.ami
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
@@ -6,7 +6,7 @@ resource "aws_instance" "heralding" {
   vpc_security_group_ids = [aws_security_group.cowrie.id]
 
   tags = {
-    Name = "HERALDING"
+    Name = "HERALDING-RDP"
   }
 
   #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
@@ -16,11 +16,11 @@ resource "aws_instance" "heralding" {
     type = "ssh"
     user = "ubuntu"
     private_key = file(var.private_key_path)
-    host     = aws_instance.heralding.public_ip
+    host     = aws_instance.heraldingRDP.public_ip
   }
 
   provisioner "file" {
-    source = "./file/heralding.yml"
+    source = "./file/heraldingRDP.yml"
     destination = "/tmp/heralding.yml"
   }
   provisioner "remote-exec" {
@@ -42,6 +42,6 @@ resource "aws_instance" "heralding" {
   */
 }
 
-output "ip-heralding" {
-  value = aws_instance.heralding.public_ip
+output "ip-heralding-RDP" {
+  value = aws_instance.heraldingRDP.public_ip
 }

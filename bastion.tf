@@ -42,10 +42,10 @@ resource "null_resource" "connection_elk" {
   }
 }
 
-resource "null_resource" "connect_conpot2" {
+resource "null_resource" "connect_conpot" {
   connection {
     bastion_host = aws_instance.bastion.public_ip
-    host         = aws_instance.conpot2.private_ip
+    host         = aws_instance.conpot.private_ip
     user         = "ubuntu"
     private_key  = file(var.private_key_path)
   }
@@ -53,5 +53,14 @@ resource "null_resource" "connect_conpot2" {
   provisioner "remote-exec" {
     script = "./script/provisionConpot.sh"
   }
+  provisioner "file" {
+    source = "./file/filebeat-conpot.yml"
+    destination = "/tmp/filebeat.yml"
+  }
+  provisioner "file" {
+    source = "./file/metric-cowrie.yml"
+    destination = "/tmp/metricbeat.yml"
+  }
+
 
 }

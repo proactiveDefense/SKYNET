@@ -15,9 +15,9 @@ pip3 install --upgrade setuptools
 pip3 install cffi
 pip3 install conpot
 
-awk 'NR==1,/enabled = True/{sub(/enabled = True/, "enabled = False")} 1' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg &>/dev/null
-sudo sed -i 's/filename = \/var\/log\/conpot.json/filename = \/home\/ubuntu\/conpot.json/' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg
-nohup conpot -f -t default &>/dev/null &
+sed '0,/enabled = False/s//enabled = True/' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg
+sed -i 's/filename = \/var\/log\/conpot.json/filename = \/home\/ubuntu\/conpot.json/' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg
+nohup conpot -f -t default &
 
 #filebeat
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb

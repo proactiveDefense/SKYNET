@@ -61,6 +61,8 @@ resource "null_resource" "connect_conpot" {
     source = "./file/metric-cowrie.yml"
     destination = "/tmp/metricbeat.yml"
   }
-
+  provisioner "remote-exec" {
+    script = "./script/startConpot.sh"
+  }
 
 }

@@ -35,11 +35,11 @@ resource "aws_instance" "heraldingRDP" {
     source = "./file/filebeat-heralding.yml"
     destination = "/tmp/filebeat-heralding.yml"
   }
-  /*
+
   provisioner "remote-exec" {
     script = "./script/startHeralding.sh"
   }
-  */
+
 }
 
 output "ip-heralding-RDP" {

@@ -162,7 +162,7 @@ output.elasticsearch:
 output.logstash:
   enabled: true
   # The Logstash hosts
-  hosts: ["projectwork4.cyberhackademy.it:5042"]
+  hosts: ["10.0.102.6:5042"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications

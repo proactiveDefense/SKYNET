@@ -21,6 +21,6 @@ sudo sed -i '$a setup.template.pattern: "%{[@metadata][beat]}-*\"' /etc/metricbe
 sudo metricbeat setup
 
 
-sudo mv /tmp/inadyn.conf /etc/inadyn.conf
-sudo service inadyn restart
+#sudo mv /tmp/inadyn.conf /etc/inadyn.conf
+#sudo service inadyn restart
 

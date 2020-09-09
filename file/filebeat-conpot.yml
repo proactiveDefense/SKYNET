@@ -25,9 +25,7 @@ filebeat.inputs:
 
     # Paths that should be crawled and fetched. Glob based paths.
     paths:
-      - /home/ubuntu/log_session.csv*
-      #- /home/ubuntu/log_session.json*
-      - /home/ubuntu/log_auth.csv*
+      - /home/ubuntu/conpot.json*
       #- c:\programdata\elasticsearch\logs\*
 
     # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -164,7 +162,7 @@ output.elasticsearch:
 output.logstash:
   enabled: true
   # The Logstash hosts
-  hosts: ["10.0.102.6:5043"]
+  hosts: ["10.0.102.6:5042"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications

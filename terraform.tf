@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "skynet_igw" {
   }
 }
 
-resource "aws_subnet" "vpc_dmz" {
+resource "aws_subnet" "dmz" {
   vpc_id                  = aws_vpc.skynet_vpc.id
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
@@ -36,9 +36,26 @@ resource "aws_subnet" "vpc_dmz" {
   }
 }
 
-resource "aws_subnet" "vpc_private" {
+resource "aws_subnet" "management" {
+  vpc_id                  = aws_vpc.skynet_vpc.id
+  cidr_block              = "10.0.2.0/24"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "MANAGEMENT"
+  }
+}
+
+resource "aws_subnet" "private" {
   vpc_id                  = aws_vpc.skynet_vpc.id
   cidr_block              = "10.0.101.0/24"
+  tags = {
+    Name = "PRIVATE"
+  }
+}
+
+resource "aws_subnet" "elk_subnet" {
+  vpc_id                  = aws_vpc.skynet_vpc.id
+  cidr_block              = "10.0.102.0/24"
   tags = {
     Name = "PRIVATE"
   }
@@ -59,7 +76,12 @@ resource "aws_route" "internet_access" {
 }
 
 resource "aws_route_table_association" "internet_access" {
-  subnet_id      = aws_subnet.vpc_dmz.id
+  subnet_id      = aws_subnet.dmz.id
+  route_table_id = aws_route_table.igw_route.id
+}
+
+resource "aws_route_table_association" "management_internet_access" {
+  subnet_id      = aws_subnet.management.id
   route_table_id = aws_route_table.igw_route.id
 }
 

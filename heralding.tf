@@ -2,14 +2,14 @@ resource "aws_instance" "heralding" {
   ami				= var.ami
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
-  subnet_id     = aws_subnet.vpc_dmz.id
+  subnet_id     = aws_subnet.dmz.id
   vpc_security_group_ids = [aws_security_group.cowrie.id]
 
   tags = {
     Name = "HERALDING"
   }
 
-  depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
+  #depends_on = [aws_key_pair.skynet_key, aws_instance.elk]
 
   #creates ssh connection to consul servers
   connection {
@@ -18,6 +18,7 @@ resource "aws_instance" "heralding" {
     private_key = file(var.private_key_path)
     host     = aws_instance.heralding.public_ip
   }
+
   provisioner "file" {
     source = "./file/heralding.yml"
     destination = "/tmp/heralding.yml"
@@ -38,7 +39,6 @@ resource "aws_instance" "heralding" {
   provisioner "remote-exec" {
     script = "./script/startHeralding.sh"
   }
-
 
 }
 

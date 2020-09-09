@@ -5,8 +5,8 @@
 # -u  Treat unset variables as an error when substituting.
 set -efux
 
-curl -sS https://deb.troglobit.com/pubkey.gpg | sudo apt-key add -
-echo "deb [arch=amd64] https://deb.troglobit.com/debian stable main" | sudo tee /etc/apt/sources.list.d/troglobit.list
+#curl -sS https://deb.troglobit.com/pubkey.gpg | sudo apt-key add -
+#echo "deb [arch=amd64] https://deb.troglobit.com/debian stable main" | sudo tee /etc/apt/sources.list.d/troglobit.list
 
 sudo apt update
 sudo apt install -y apt-transport-https
@@ -18,7 +18,6 @@ sudo dpkg -i elasticsearch-7.9.0-amd64.deb
 wget https://artifacts.elastic.co/downloads/kibana/kibana-7.9.0-amd64.deb
 sudo dpkg -i kibana-7.9.0-amd64.deb
 #metricbeat
-#metricbeat
 curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.9.0-amd64.deb
 sudo dpkg -i metricbeat-7.9.0-amd64.deb
 
@@ -28,6 +27,6 @@ sudo service kibana start
 sudo systemctl enable kibana
 sudo systemctl enable elasticsearch.service
 
-sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install inadyn
+#sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install inadyn
 
 

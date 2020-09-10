@@ -9,3 +9,6 @@ sudo systemctl enable filebeat
 sudo cp /tmp/metricbeat.yml /etc/metricbeat/metricbeat.yml
 sudo service metricbeat start
 sudo systemctl enable metricbeat
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8800
+sudo iptables -t nat -A PREROUTING -p tcp --dport 502 -j REDIRECT --to-port 5020

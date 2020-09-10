@@ -19,6 +19,10 @@ resource "aws_instance" "heraldingRDP" {
     host     = aws_instance.heraldingRDP.public_ip
   }
 
+  provisioner "remote-exec" {
+    inline = ["sudo hostnamectl set-hostname 'heralding-RDP'"]
+  }
+
   provisioner "file" {
     source = "./file/heraldingRDP.yml"
     destination = "/tmp/heralding.yml"

@@ -5,6 +5,8 @@
 # -u  Treat unset variables as an error when substituting.
 set -efux 
 
+sudo hostnamectl set-hostname 'cowrie'
+
 sudo apt update && \
 sudo apt-get install -y git python3-virtualenv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind virtualenv
 

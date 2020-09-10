@@ -15,7 +15,7 @@ output "ip-bastion" {
   value = aws_instance.bastion.public_ip
 }
 
-
+/*
 resource "null_resource" "connection_elk" {
   connection {
     bastion_host = aws_instance.bastion.public_ip
@@ -66,3 +66,5 @@ resource "null_resource" "connect_conpot" {
   }
 
 }
+
+*/

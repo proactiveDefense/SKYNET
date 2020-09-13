@@ -9,6 +9,18 @@ resource "aws_instance" "dns" {
     Name = "PIHOLE"
   }
 
+  connection {
+    bastion_host = aws_instance.bastion.public_ip
+    host         = aws_instance.dns.private_ip
+    user         = "ubuntu"
+    private_key  = file(var.private_key_path)
+  }
+
+  provisioner "file" {
+    source = "./file/pihole-setupVars.conf"
+    destination = "/tmp/setupVars.conf"
+  }
+
 }
 
 output "ip-dns" {

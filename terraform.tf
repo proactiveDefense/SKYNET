@@ -57,7 +57,15 @@ resource "aws_subnet" "elk_subnet" {
   vpc_id                  = aws_vpc.skynet_vpc.id
   cidr_block              = "10.0.102.0/24"
   tags = {
-    Name = "PRIVATE"
+    Name = "ELK"
+  }
+}
+
+resource "aws_subnet" "seconion_subnet" {
+  vpc_id                  = aws_vpc.skynet_vpc.id
+  cidr_block              = "10.0.103.0/24"
+  tags = {
+    Name = "SEC ONION"
   }
 }
 

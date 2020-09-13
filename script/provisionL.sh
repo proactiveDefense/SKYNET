@@ -20,6 +20,7 @@ sudo sed -i '$a setup.template.name: "%{[@metadata][beat]}\"' /etc/metricbeat/me
 sudo sed -i '$a setup.template.pattern: "%{[@metadata][beat]}-*\"' /etc/metricbeat/metricbeat.yml
 sudo metricbeat setup
 
+#curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@/tmp/export.ndjson
 
 #sudo mv /tmp/inadyn.conf /etc/inadyn.conf
 #sudo service inadyn restart

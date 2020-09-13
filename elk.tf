@@ -16,6 +16,11 @@ resource "aws_instance" "elk" {
     private_key  = file(var.private_key_path)
   }
 
+  provisioner "file" {
+    source = "./file/export.ndjson"
+    destination = "/tmp/export.ndjson"
+  }
+
   provisioner "remote-exec" {
     script = "./script/provisionEK.sh"
   }

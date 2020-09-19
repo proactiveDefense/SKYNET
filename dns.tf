@@ -21,6 +21,10 @@ resource "aws_instance" "dns" {
     destination = "/tmp/setupVars.conf"
   }
 
+  provisioner "remote-exec" {
+    script = "./script/provisionDNS.sh"
+  }
+
 }
 
 output "ip-dns" {

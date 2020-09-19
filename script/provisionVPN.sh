@@ -9,3 +9,6 @@ sudo apt update && curl -O https://raw.githubusercontent.com/angristan/openvpn-i
 chmod +x openvpn-install.sh
 sudo AUTO_INSTALL=y ./openvpn-install.sh
 
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo docker pull hwdsl2/ipsec-vpn-server

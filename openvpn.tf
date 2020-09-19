@@ -20,6 +20,10 @@ resource "aws_instance" "vpn" {
     script = "./script/provisionVPN.sh"
   }
 
+  #provisioner "local-exec" {
+    #command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${var.openstack_keypair} ubuntu@${openstack_networking_floatingip_v2.wr_manager_fip.address}:~/client.token ."
+  #}
+
 }
 
 output "ip-vpn" {

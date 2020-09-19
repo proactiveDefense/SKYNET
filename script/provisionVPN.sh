@@ -12,3 +12,12 @@ sudo AUTO_INSTALL=y ./openvpn-install.sh
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo docker pull hwdsl2/ipsec-vpn-server
+
+sudo docker run \
+    --name ipsec-vpn-server \
+    --env-file ./vpn.env \
+    --restart=always \
+    -p 500:500/udp \
+    -p 4500:4500/udp \
+    -d --privileged \
+    hwdsl2/ipsec-vpn-server

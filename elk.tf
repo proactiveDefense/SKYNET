@@ -20,6 +20,10 @@ resource "aws_instance" "elk" {
     source = "./file/export.ndjson"
     destination = "/tmp/export.ndjson"
   }
+  provisioner "file" {
+    source = "./file/dash_pihole.ndjson"
+    destination = "/tmp/dash_pihole.ndjson"
+  }
 
   provisioner "remote-exec" {
     script = "./script/provisionEK.sh"
@@ -32,6 +36,14 @@ resource "aws_instance" "elk" {
   provisioner "file" {
     source = "./file/log-cow.conf"
     destination = "/tmp/log-cow.conf"
+  }
+  provisioner "file" {
+    source = "./file/20-dns-syslog.conf"
+    destination = "/tmp/20-dns-syslog.conf"
+  }
+  provisioner "file" {
+    source = "./file/dns"
+    destination = "/tmp/dns"
   }
 
   provisioner "remote-exec" {

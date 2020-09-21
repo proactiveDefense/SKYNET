@@ -19,6 +19,7 @@ resource "aws_instance" "conpot" {
   provisioner "remote-exec" {
     script = "./script/provisionConpot.sh"
   }
+
   provisioner "file" {
     source = "./file/filebeat-conpot.yml"
     destination = "/tmp/filebeat.yml"
@@ -27,6 +28,7 @@ resource "aws_instance" "conpot" {
     source = "./file/metric-cowrie.yml"
     destination = "/tmp/metricbeat.yml"
   }
+
   provisioner "remote-exec" {
     script = "./script/startConpot.sh"
   }

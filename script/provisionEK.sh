@@ -20,6 +20,9 @@ sudo dpkg -i kibana-7.9.0-amd64.deb
 #metricbeat
 curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.9.0-amd64.deb
 sudo dpkg -i metricbeat-7.9.0-amd64.deb
+#auditbeat
+curl -L -O https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.9.0-amd64.deb
+sudo dpkg -i auditbeat-7.9.0-amd64.deb
 
 sudo sed -i 's/#server.host: "localhost"/server.host: 0.0.0.0/' /etc/kibana/kibana.yml
 sudo service elasticsearch start

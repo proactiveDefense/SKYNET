@@ -21,5 +21,10 @@ sudo cp /tmp/metricbeat.yml /etc/metricbeat/metricbeat.yml
 sudo service metricbeat start
 sudo systemctl enable metricbeat
 
+sudo cp /tmp/auditbeat.yml /etc/auditbeat/auditbeat.yml
+sudo service auditbeat start
+sudo systemctl enable auditbeat
+
+
 #sudo apt-get install -y auditd audispd-plugins
 #sudo auditctl -w / -p war

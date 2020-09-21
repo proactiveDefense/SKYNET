@@ -28,6 +28,14 @@ resource "aws_instance" "conpot" {
     source = "./file/metric-cowrie.yml"
     destination = "/tmp/metricbeat.yml"
   }
+  provisioner "file" {
+    source = "./file/MASTER_sym.py"
+    destination = "/home/ubuntu/MASTER_sym.py"
+  }
+  provisioner "file" {
+    source = "./file/OVERALL.pcap"
+    destination = "/home/ubuntu/OVERALL.pcap"
+  }
 
   provisioner "remote-exec" {
     script = "./script/startConpot.sh"

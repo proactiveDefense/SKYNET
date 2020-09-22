@@ -13,9 +13,6 @@ sudo cp /tmp/GeoLite2-City.mmdb /opt/logstash/vendor/geoip/
 wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.0.deb
 sudo dpkg -i logstash-7.9.0.deb && \
 sudo cp /tmp/log-cow.conf /etc/logstash/conf.d/
-#sudo mkdir patterns
-#sudo cp /tmp/20-dns-syslog.conf /etc/logstash/conf.d/
-#sudo cp /tmp/dns /etc/logstash/patterns/dns
 
 sudo sed -i '$a output.elasticsearch.index: "%{[@metadata][beat]}-%{[@metadata][version]}\"' /etc/metricbeat/metricbeat.yml
 sudo sed -i '$a setup.template.name: "%{[@metadata][beat]}\"' /etc/metricbeat/metricbeat.yml
@@ -27,10 +24,11 @@ sudo sed -i '$a setup.template.name: "%{[@metadata][beat]}\"' /etc/auditbeat/aud
 sudo sed -i '$a setup.template.pattern: "%{[@metadata][beat]}-*\"' /etc/auditbeat/auditbeat.yml
 sudo auditbeat setup
 
+sudo filebeat setup
+
 sudo service logstash start
 
-#curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@/tmp/export.ndjson
-curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@/tmp/dash_pihole.ndjson
+curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@/tmp/export.ndjson
 
 #sudo mv /tmp/inadyn.conf /etc/inadyn.conf
 #sudo service inadyn restart

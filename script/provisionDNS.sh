@@ -15,3 +15,14 @@ set -efux
 #sudo dpkg -i filebeat-7.9.0-amd64.deb
 
 #sudo sh -c "echo log-queries=extra >> /etc/dnsmasq.d/99-pihole-log-facility.conf"
+
+#filebeat
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.9.0-amd64.deb
+sudo dpkg -i filebeat-7.9.0-amd64.deb
+sudo cp /tmp/filebeat.yml /etc/filebeat/
+
+wget https://github.com/coredns/coredns/releases/download/v1.6.6/coredns_1.6.6_linux_amd64.tgz
+tar -xvf coredns_1.6.6_linux_amd64.tgz
+./coredns > log.txt &
+sudo service filebeat start
+

@@ -1,0 +1,4 @@
+.:1053 {
+    forward . 8.8.8.8:53
+    log . ,{remote},{port},{type},{class},{name},{proto},{rcode}
+}

@@ -17,8 +17,12 @@ resource "aws_instance" "dns" {
   }
 
   provisioner "file" {
-    source = "./file/pihole-setupVars.conf"
-    destination = "/tmp/setupVars.conf"
+    source = "./file/Corefile"
+    destination = "/home/ubuntu/Corefile"
+  }
+  provisioner "file" {
+    source = "./file/filebeat-dns.yml"
+    destination = "/tmp/filebeat.yml"
   }
 
   provisioner "remote-exec" {

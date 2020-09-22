@@ -37,14 +37,6 @@ resource "aws_instance" "elk" {
     source = "./file/log-cow.conf"
     destination = "/tmp/log-cow.conf"
   }
-  provisioner "file" {
-    source = "./file/20-dns-syslog.conf"
-    destination = "/tmp/20-dns-syslog.conf"
-  }
-  provisioner "file" {
-    source = "./file/dns"
-    destination = "/tmp/dns"
-  }
 
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"

@@ -37,6 +37,10 @@ resource "aws_instance" "elk" {
     source = "./file/log-cow.conf"
     destination = "/tmp/log-cow.conf"
   }
+  provisioner "file" {
+    source = "./file/config.yaml"
+    destination = "/tmp/config.yaml"
+  }
 
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"

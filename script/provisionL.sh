@@ -31,3 +31,6 @@ curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --fo
 #sudo mv /tmp/inadyn.conf /etc/inadyn.conf
 #sudo service inadyn restart
 
+sudo apt install -y elastalert && \
+sudo cp /tmp/config.yaml /etc/elastalert/rules/
+#elastalert --start NOW

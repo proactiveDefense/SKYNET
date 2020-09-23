@@ -24,8 +24,6 @@ sudo sed -i '$a setup.template.name: "%{[@metadata][beat]}\"' /etc/auditbeat/aud
 sudo sed -i '$a setup.template.pattern: "%{[@metadata][beat]}-*\"' /etc/auditbeat/auditbeat.yml
 sudo auditbeat setup
 
-sudo filebeat setup
-
 sudo service logstash start
 
 curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@/tmp/export.ndjson

@@ -9,6 +9,11 @@ resource "aws_instance" "elk" {
     Name = "ELK"
   }
 
+  root_block_device {
+    volume_size = "25"
+    volume_type = "standard"
+  }
+
   connection {
     bastion_host = aws_instance.bastion.public_ip
     host         = aws_instance.elk.private_ip
@@ -50,3 +55,4 @@ resource "aws_instance" "elk" {
 output "ip-elk" {
   value = aws_instance.elk.private_ip
 }
+

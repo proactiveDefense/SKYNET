@@ -23,6 +23,7 @@ sudo cp /tmp/filebeat.yml /etc/filebeat/
 
 wget https://github.com/coredns/coredns/releases/download/v1.6.6/coredns_1.6.6_linux_amd64.tgz
 tar -xvf coredns_1.6.6_linux_amd64.tgz
-./coredns > log.txt &
+sudo service systemd-resolved stop
+sudo ./coredns > log.txt &
 sudo service filebeat start
 

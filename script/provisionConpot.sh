@@ -19,6 +19,7 @@ pip3 install conpot
 
 sed -i '0,/enabled = False/s//enabled = True/' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg
 sed -i 's/filename = \/var\/log\/conpot.json/filename = \/home\/ubuntu\/conpot.json/' /home/ubuntu/.local/lib/python3.8/site-packages/conpot/testing.cfg
+echo "<html><iframe src="http://genlogic.com/html5_demos/process_demo_full.html" frameborder="0"  height="100%" width="100%"></html>" > /home/ubuntu/.local/lib/python3.8/site-packages/conpot/templates/default/http/htdocs/index.html
 nohup conpot -f -t default &
 
 #filebeat

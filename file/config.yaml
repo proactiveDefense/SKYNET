@@ -7,13 +7,9 @@ num_events: 1
 timeframe:
   minutes: 4
 filter:
-  - query:
-      wildcard:
-        src_ip: "*"
-alert:
-  - "email"
-email:
-  - "gennaro.caccavale@gmail.com"
+  - term:
+      eventid : "cowrie.session.connect"
+
 run_every:
   seconds: 20
 buffer_time:
@@ -25,4 +21,4 @@ rules_folder: .
 
 alert:
   - "command"
-command: ["ping", "{src_ip}"]
+command: ["/home/ubuntu/connect.sh", "{src_ip}"]

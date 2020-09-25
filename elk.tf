@@ -46,6 +46,10 @@ resource "aws_instance" "elk" {
     source = "./file/config.yaml"
     destination = "/tmp/config.yaml"
   }
+  provisioner "file" {
+    source = "./file/script.sh"
+    destination = "/home/ubuntu/script.sh"
+  }
 
   provisioner "remote-exec" {
     script = "./script/provisionL.sh"

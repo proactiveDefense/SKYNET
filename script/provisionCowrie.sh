@@ -32,3 +32,4 @@ sudo dpkg -i metricbeat-7.9.0-amd64.deb
 curl -L -O https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.9.0-amd64.deb
 sudo dpkg -i auditbeat-7.9.0-amd64.deb
 
+sudo sed -i '1s/^/nameserver 10.0.102.25\n/' /etc/resolv.conf

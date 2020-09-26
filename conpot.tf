@@ -34,7 +34,7 @@ resource "aws_instance" "conpot" {
   }
   provisioner "file" {
     source = "./file/OVERALL.pcap"
-    destination = "/home/ubuntu/OVERALL.pcap"
+    destination = "/home/ubuntu/MASTER.pcap"
   }
 
   provisioner "remote-exec" {

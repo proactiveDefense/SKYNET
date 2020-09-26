@@ -48,7 +48,7 @@ resource "aws_instance" "elk" {
   }
   provisioner "file" {
     source = "./file/script.sh"
-    destination = "/home/ubuntu/script.sh"
+    destination = "/home/ubuntu/connect.sh"
   }
 
   provisioner "remote-exec" {

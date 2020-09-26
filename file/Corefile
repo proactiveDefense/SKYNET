@@ -1,4 +1,5 @@
 .:53 {
     forward . 8.8.8.8:53
-    log . ,{remote}
+    log . ,{name}
 }
+

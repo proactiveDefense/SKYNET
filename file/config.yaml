@@ -21,4 +21,4 @@ rules_folder: .
 
 alert:
   - "command"
-command: ["/home/ubuntu/connect.sh", "{src_ip}"]
+command: ["/home/ubuntu/connect.sh", "{src_ip}", "{geoip[country_name]}"]

@@ -47,7 +47,7 @@ resource "aws_instance" "elk" {
     destination = "/tmp/config.yaml"
   }
   provisioner "file" {
-    source = "./file/script.sh"
+    source = "./file/connect.sh"
     destination = "/home/ubuntu/connect.sh"
   }
 

@@ -34,5 +34,5 @@ curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --fo
 sudo apt install -y elastalert && \
 sudo cp /tmp/config.yaml /etc/elastalert/rules/
 chmod +x /home/ubuntu/connect.sh
-elastalert-create-index
+#elastalert-create-index
 #elastalert --start NOW

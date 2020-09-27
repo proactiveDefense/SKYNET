@@ -33,7 +33,7 @@ resource "aws_instance" "conpot" {
     destination = "/home/ubuntu/MASTER_sym.py"
   }
   provisioner "file" {
-    source = "./file/OVERALL.pcap"
+    source = "./file/MASTER.pcap"
     destination = "/home/ubuntu/MASTER.pcap"
   }
 

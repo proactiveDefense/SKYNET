@@ -1,4 +1,4 @@
-resource "aws_instance" "bastion" {
+/*resource "aws_instance" "bastion" {
   ami			= var.ami
   instance_type	= "t2.micro"
   key_name		= aws_key_pair.skynet_key.key_name
@@ -13,5 +13,5 @@ resource "aws_instance" "bastion" {
 
 output "ip-bastion" {
   value = aws_instance.bastion.public_ip
-}
+}*/
 

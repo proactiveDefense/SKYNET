@@ -10,7 +10,7 @@ resource "aws_instance" "dns" {
   }
 
   connection {
-    bastion_host = aws_instance.bastion.public_ip
+    bastion_host = aws_instance.vpn.public_ip
     host         = aws_instance.dns.private_ip
     user         = "ubuntu"
     private_key  = file(var.private_key_path)

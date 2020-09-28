@@ -4,16 +4,17 @@ name: CONFIG.YAML RULEZ
 type: frequency
 index: cowrie-*
 num_events: 1
+
 timeframe:
   minutes: 4
 filter:
   - term:
-      eventid : "cowrie.session.connect"
+      eventid : "cowrie.login.success"
 
 run_every:
-  seconds: 20
+  seconds: 10
 buffer_time:
-  minutes: 1
+  seconds: 30
 writeback_index:
   "elastalert_match"
 rules_folder: .

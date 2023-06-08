@@ -4,4 +4,4 @@ SkyTrap is a cloud-based research honeynet that mimics ICS/SCADA environments. A
 
 ## Author (in strict alphabetical order)
 - [Gennaro Caccavale]
-- [Nicola d'Ambrosio][https://github.com/NdA994]
+- [Nicola d'Ambrosio](https://github.com/NdA994)
